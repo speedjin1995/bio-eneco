@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="assets/css/custom.min.css" type="text/css" media="all" />
+    <style>
+        @page {
+            size: A5 landscape;
+            margin: 10mm;
+        }
+
+        .custom-hr {
+            border-top: 1px solid #000;        /* Remove the default border */
+            height: 1px;         /* Define the thickness */
+            margin: 0;           /* Reset margins */
+        }
+
+        .body_1 p {
+            margin-bottom: 0px;
+        }
+
+        .body_1 p span{
+            margin-right: 15px;
+        }
+
+        .body_2 p {
+            margin-bottom: 0px;
+        }
+
+        .body_2 p span{
+            margin-right: 15px;
+        }
+
+        .body2 {
+            border-top: 1px dashed black;
+            border-bottom: 1px dashed black;
+        }
+
+        .body_3 {
+            border-top: 1px dashed black;
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .signature {
+            padding-top: 40px; 
+            padding-left: 30px; 
+            padding-right: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-full">
+        <div class="header">
+            <div style="text-align: center;">
+                <h3 class="mb-0 fw-bold text-dark">EAST ROCK MARKETING SDN BHD</h3>
+                <p style="font-size: 10px; margin-bottom: 3px;">(1373003-H) <br> LOT PT 758, JALAN PADANG GAJAH <br>BATU 16, TAMBAK JAWA<br>45800 JERAM, KUALA SELANGOR,<br>SELANGOR D.E.<br>TEL: 013-969 7663, 012-9536128</p>
+                <h4 class="pb-2 fw-bold text-dark"><span style="border-bottom: 1px solid black">PURCHASE WEIGHING TICKET</span></h4>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-8 body_1">
+                <p>WEIGHING DATE<span style="margin-left: 30px;">:</span>'.$transDateOnly.'</p>
+                <p>VEHICLE NO.<span style="margin-left: 55.5px;">:</span>'.$lorryNo.'</p>
+                <p>TRANSPORTER CODE<span style="margin-left: 5px;">:</span>'.$transporterCode. ' ' .$transporterName'</p>
+                <p>SUPPLIER CODE<span style="margin-left: 55.5px;">:</span>'.$transporterCode. ' ' .$transporterName'</p>
+                <p>PRODUCT CODE<span style="margin-left: 37px;">:</span>'.$productCode. ' ' .$productName'</p>
+                <p>DESTINATION CODE<span style="margin-left: 30.5px;">:</span>EX-Q EX-QUARRY</p>
+                <p>P/O NO.<span style="margin-left: 16px;">:</span> PO2501/067(BT) D/O No. : B0243825</p>
+                <p>REMARKS<span style="margin-left: 72.5px;">:</span>'.$remarks.'</p>
+            </div>
+            <div class="col-4 body_1">
+                <p>TICKET NO.<span style="margin-left: 20px;">:</span><b>'.$loadingChitNo.'</b></p>
+                <p>SUPPLIER WT<span style="margin-left: 20px;">:</span>12,920</p>
+                <p>WEIGHT DIFF.<span style="margin-left: 20px;">:</span>30</p>
+            </div>
+        </div>
+
+        <div class="row body2">
+            <div class="col-6 body_2 mt-2 mb-2">
+                <p>WEIGHT IN <span style="margin-left: 26px;">(KG)</span><span>:</span>'.$grossWeight.'</p>
+                <p>WEIGHT OUT<span style="margin-left: 15px;">(KG)</span><span>:</span>'.$tareWeight.'</p>
+                <p>NET WEIGHT<span style="margin-left: 16px;">(KG)</span><span>:</span>'.$nettWeight.'</p>
+            </div>
+            <div class="col-6 body_2 mt-2 mb-2">
+                <p>TIME IN<span style="margin-left: 26px;">:</span>'.$formattedGrossWeightDate.'</p>
+                <p>TIME OUT<span style="margin-left: 11px;">:</span>'.$formattedTareWeightDate.'</p>
+            </div>
+        </div>
+
+        <div class="row pt-4">
+            <div class="col-4 signature">
+                <div class="body_3">
+                    WEIGHED BY '.$weightBy.'
+                </div>
+            </div>
+            <div class="col-4 signature">
+                <div class="body_3">
+                    LORRY DRIVER
+                </div>
+            </div>
+            <div class="col-4 signature">
+                <div class="body_3">
+                    RECEIVED BY
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
