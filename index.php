@@ -1717,12 +1717,42 @@ else{
 
         $("#fromDateSearch").flatpickr({
             dateFormat: "d-m-Y",
-            defaultDate: today
+            defaultDate: today,
+            onChange: function(selectedDates, dateStr, instance) {
+                if (userRole == 'NORMAL') {
+                    var selectedDate = new Date(selectedDates[0]);
+                    var todayDate = new Date(today);
+                    
+                    // Reset time to compare only dates
+                    selectedDate.setHours(0, 0, 0, 0);
+                    todayDate.setHours(0, 0, 0, 0);
+                    
+                    if (selectedDate.getTime() !== todayDate.getTime()) {
+                        alert('Normal users can only select today\'s date.');
+                        instance.setDate(today);
+                    }
+                }
+            }
         });
 
         $('#toDateSearch').flatpickr({
             dateFormat: "d-m-Y",
-            defaultDate: today
+            defaultDate: today,
+            onChange: function(selectedDates, dateStr, instance) {
+                if (userRole == 'NORMAL') {
+                    var selectedDate = new Date(selectedDates[0]);
+                    var todayDate = new Date(today);
+                    
+                    // Reset time to compare only dates
+                    selectedDate.setHours(0, 0, 0, 0);
+                    todayDate.setHours(0, 0, 0, 0);
+                    
+                    if (selectedDate.getTime() !== todayDate.getTime()) {
+                        alert('Normal users can only select today\'s date.');
+                        instance.setDate(today);
+                    }
+                }
+            }
         });
 
         if (userRole == 'SADMIN' || userRole == 'ADMIN' || userRole == 'MANAGER'){
