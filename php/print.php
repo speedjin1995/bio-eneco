@@ -90,9 +90,12 @@ if(isset($_POST['userID'], $_POST["file"])){
                     $statusCode = 'ITR';
                 }
                 else if($transactionStatus == 'Local'){
-                   $productCode = $row['product_code'];
+                    $productCode = $row['product_code'];
                     $productName = $row['product_name'];
                     $statusCode = 'IT';
+                    $transactionStatus = 'INTERNAL TRANSFER';
+                    $supplierCode = $row['plant_code'];
+                    $supplierName = 'BIO ENECO S/B';
                 }
                 else{
                     $statusCode = 'S';
@@ -242,7 +245,7 @@ if(isset($_POST['userID'], $_POST["file"])){
                                 <h3 class="mb-1 fw-bold text-dark">'.$compname.'</h3>
                                 <p style="font-size: 14px; margin: 1px 0;">'.$compaddress.'</p>
                                 <p style="font-size: 14px; margin: 1px 0;">'.$compaddress2.'</p>
-                                <p style="font-size: 14px; margin: 1px 0;">'.$compaddress.'</p>
+                                <p style="font-size: 14px; margin: 1px 0;">'.$compaddress3.'</p>
                                 <p style="font-size: 14px; margin: 1px 0;">TEL : '.$compphone.'</p>
                             </div>
 

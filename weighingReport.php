@@ -140,10 +140,12 @@ else{
                                                     <div class="col-3">
                                                         <div class="mb-3">
                                                             <label for="statusSearch" class="form-label">Status</label>
-                                                            <select id="statusSearch" class="form-select"  >
-                                                                <option value="Sales" selected>Sales</option>
-                                                                <option value="Purchase">Purchase</option>
-                                                                <option value="Local">Public</option>
+                                                            <select id="statusSearch" class="form-select">
+                                                                <option selected>-</option>
+                                                                <option value="Sales">S - Sales</option>
+                                                                <option value="Purchase">P - Purchase</option>
+                                                                <option value="Local">IT - Internal Transfer</option>
+                                                                <option value="Receive">ITR - Internal Transfer Receive</option>
                                                             </select>
                                                         </div>
                                                     </div><!--end col-->
@@ -184,17 +186,7 @@ else{
                                                                 <option value="Container">Container</option>
                                                             </select>
                                                         </div>
-                                                    </div>--><!--end col-->                                               
-                                                    <div class="col-3">
-                                                        <div class="mb-3">
-                                                            <label for="customerTypeSearch" class="form-label">Customer Type</label>
-                                                            <select id="customerTypeSearch" class="form-select">
-                                                                <option selected>-</option>
-                                                                <option value="Cash">Cash</option>
-                                                                <option value="Normal">Normal</option>
-                                                            </select>
-                                                        </div>
-                                                    </div><!--end col-->
+                                                    </div>--><!--end col-->
                                                     <div class="col-3" id="productSearchDisplay">
                                                         <div class="mb-3">
                                                             <label for="ForminputState" class="form-label">Product</label>

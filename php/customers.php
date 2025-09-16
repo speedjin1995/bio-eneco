@@ -74,65 +74,72 @@ if (isset($_POST['customerCode'])) {
         $faxNo = trim($_POST["faxNo"]);
     }
     
-    if(! empty($customerId))
-    {
-        // $sql = "UPDATE Customer SET company_reg_no=?, name=?, address_line_1=?, address_line_2=?, address_line_3=?, phone_no=?, fax_no=?, created_by=?, modified_by=? WHERE customer_code=?";
-        $action = "2";
-        if ($update_stmt = $db->prepare("UPDATE Customer SET customer_code=?, company_reg_no=?, name=?, address_line_1=?, address_line_2=?, address_line_3=?, address_line_4=?, phone_no=?, fax_no=?, created_by=?, modified_by=? WHERE id=?")) 
+    try{
+        if(! empty($customerId))
         {
-            $update_stmt->bind_param('ssssssssssss', $customerCode, $companyRegNo, $companyName, $addressLine1, $addressLine2, $addressLine3, $addressLine4, $phoneNo, $faxNo, $username, $username, $customerId);
-
-            // Execute the prepared query.
-            if (! $update_stmt->execute()) {
-                echo json_encode(
-                    array(
-                        "status"=> "failed", 
-                        "message"=> $update_stmt->error
-                    )
-                );
-            }
-            else{
-                echo json_encode(
-                    array(
-                        "status"=> "success", 
-                        "message"=> "Updated Successfully!!" 
-                    )
-                );
-            }
-
-            $update_stmt->close();
-            $db->close();
-        }
-    }
-    else
-    {
-        $action = "1";
-        if ($insert_stmt = $db->prepare("INSERT INTO Customer (customer_code, company_reg_no, name, address_line_1, address_line_2, address_line_3, address_line_4, phone_no, fax_no, created_by, modified_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('sssssssssss', $customerCode, $companyRegNo, $companyName, $addressLine1, $addressLine2, $addressLine3, $addressLine4, $phoneNo, $faxNo, $username, $username);
-
-            // Execute the prepared query.
-            if (! $insert_stmt->execute()) {
-                echo json_encode(
-                    array(
-                        "status"=> "failed", 
-                        "message"=> $insert_stmt->error
-                    )
-                );
-            }
-            else{
-                echo json_encode(
-                    array(
-                        "status"=> "success", 
-                        "message"=> "Added Successfully!!" 
-                    )
-                );
-            }
-
-            $insert_stmt->close();
-            $db->close();
-        }
-    }
+            // $sql = "UPDATE Customer SET company_reg_no=?, name=?, address_line_1=?, address_line_2=?, address_line_3=?, phone_no=?, fax_no=?, created_by=?, modified_by=? WHERE customer_code=?";
+            $action = "2";
+            if ($update_stmt = $db->prepare("UPDATE Customer SET customer_code=?, company_reg_no=?, name=?, address_line_1=?, address_line_2=?, address_line_3=?, address_line_4=?, phone_no=?, fax_no=?, created_by=?, modified_by=? WHERE id=?")) 
+            {
+                $update_stmt->bind_param('ssssssssssss', $customerCode, $companyRegNo, $companyName, $addressLine1, $addressLine2, $addressLine3, $addressLine4, $phoneNo, $faxNo, $username, $username, $customerId);
     
+                // Execute the prepared query.
+                if (! $update_stmt->execute()) {
+                    echo json_encode(
+                        array(
+                            "status"=> "failed", 
+                            "message"=> $update_stmt->error
+                        )
+                    );
+                }
+                else{
+                    echo json_encode(
+                        array(
+                            "status"=> "success", 
+                            "message"=> "Updated Successfully!!" 
+                        )
+                    );
+                }
+    
+                $update_stmt->close();
+                $db->close();
+            }
+        }
+        else
+        {
+            $action = "1";
+            if ($insert_stmt = $db->prepare("INSERT INTO Customer (customer_code, company_reg_no, name, address_line_1, address_line_2, address_line_3, address_line_4, phone_no, fax_no, created_by, modified_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                $insert_stmt->bind_param('sssssssssss', $customerCode, $companyRegNo, $companyName, $addressLine1, $addressLine2, $addressLine3, $addressLine4, $phoneNo, $faxNo, $username, $username);
+    
+                // Execute the prepared query.
+                if (! $insert_stmt->execute()) {
+                    echo json_encode(
+                        array(
+                            "status"=> "failed", 
+                            "message"=> $insert_stmt->error
+                        )
+                    );
+                }
+                else{
+                    echo json_encode(
+                        array(
+                            "status"=> "success", 
+                            "message"=> "Added Successfully!!" 
+                        )
+                    );
+                }
+    
+                $insert_stmt->close();
+                $db->close();
+            }
+        }
+    }
+    catch (exception $e) {
+        echo json_encode([
+            "status"=> "failed",
+            "message"=> $e->getMessage()
+        ]);
+    }
 }
 else
 {

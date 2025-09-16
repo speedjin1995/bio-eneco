@@ -74,131 +74,139 @@ if (isset($_POST['productCode'])) {
         $basicUom = trim($_POST["basicUom"]);
     }
 
-    if(! empty($productId))
-    {
-        if ($update_stmt = $db->prepare("UPDATE Raw_Mat SET raw_mat_code=?, name=?, price=?, description=?, variance=?, high=?, low=?, basic_uom=?, type=?, created_by=?, modified_by=? WHERE id=?")) 
+    try{
+        if(! empty($productId))
         {
-            $update_stmt->bind_param('ssssssssssss', $productCode, $productName, $productPrice, $description, $varianceType, $high, $low, $basicUom, $type, $username, $username, $productId);
-
-            // Execute the prepared query.
-            if (! $update_stmt->execute()) {
-                echo json_encode(
-                    array(
-                        "status"=> "failed", 
-                        "message"=> $update_stmt->error
-                    )
-                );
-            }
-            else{
-                # Raw_Mat_UOM
-                if (isset($_POST['uomNo'])){
-                    $uomNo = $_POST['uomNo'];
-                    $uomId = $_POST['uomId'];
-                    $uom =  $_POST['uom'];
-                    $rate = $_POST['rate'];
-                    $deleteStatus = 1;
-                    if(isset($uomNo) && $uomNo != null && count($uomNo) > 0){
-                        # Delete all existing product uom records tied to the product id then reinsert
-                        if ($delete_stmt = $db->prepare("UPDATE Raw_Mat_UOM SET status=? WHERE raw_mat_id=?")){
-                            $delete_stmt->bind_param('ss', $deleteStatus, $productId);
+            if ($update_stmt = $db->prepare("UPDATE Raw_Mat SET raw_mat_code=?, name=?, price=?, description=?, variance=?, high=?, low=?, basic_uom=?, type=?, created_by=?, modified_by=? WHERE id=?")) 
+            {
+                $update_stmt->bind_param('ssssssssssss', $productCode, $productName, $productPrice, $description, $varianceType, $high, $low, $basicUom, $type, $username, $username, $productId);
     
-                            // Execute the prepared query.
-                            if (! $delete_stmt->execute()) {
-                                echo json_encode(
-                                    array(
-                                        "status"=> "failed", 
-                                        "message"=> $delete_stmt->error
-                                    )
-                                );
-                            }
-                            else{
-
-                                foreach ($uomNo as $key => $no) {
-                                    if ($product_stmt = $db->prepare("INSERT INTO Raw_Mat_UOM (raw_mat_id, unit_id, rate) VALUES (?, ?, ?)")){
-                                        $product_stmt->bind_param('sss', $productId, $uom[$key], $rate[$key]);
-                                        $product_stmt->execute();
-                                    }
-                                }
-                                $product_stmt->close();
-                            }
-                        } 
-                    }
+                // Execute the prepared query.
+                if (! $update_stmt->execute()) {
+                    echo json_encode(
+                        array(
+                            "status"=> "failed", 
+                            "message"=> $update_stmt->error
+                        )
+                    );
                 }
-
-                echo json_encode(
-                    array(
-                        "status"=> "success", 
-                        "message"=> "Updated Successfully!!" 
-                    )
-                );
+                else{
+                    # Raw_Mat_UOM
+                    if (isset($_POST['uomNo'])){
+                        $uomNo = $_POST['uomNo'];
+                        $uomId = $_POST['uomId'];
+                        $uom =  $_POST['uom'];
+                        $rate = $_POST['rate'];
+                        $deleteStatus = 1;
+                        if(isset($uomNo) && $uomNo != null && count($uomNo) > 0){
+                            # Delete all existing product uom records tied to the product id then reinsert
+                            if ($delete_stmt = $db->prepare("UPDATE Raw_Mat_UOM SET status=? WHERE raw_mat_id=?")){
+                                $delete_stmt->bind_param('ss', $deleteStatus, $productId);
+        
+                                // Execute the prepared query.
+                                if (! $delete_stmt->execute()) {
+                                    echo json_encode(
+                                        array(
+                                            "status"=> "failed", 
+                                            "message"=> $delete_stmt->error
+                                        )
+                                    );
+                                }
+                                else{
+    
+                                    foreach ($uomNo as $key => $no) {
+                                        if ($product_stmt = $db->prepare("INSERT INTO Raw_Mat_UOM (raw_mat_id, unit_id, rate) VALUES (?, ?, ?)")){
+                                            $product_stmt->bind_param('sss', $productId, $uom[$key], $rate[$key]);
+                                            $product_stmt->execute();
+                                        }
+                                    }
+                                    $product_stmt->close();
+                                }
+                            } 
+                        }
+                    }
+    
+                    echo json_encode(
+                        array(
+                            "status"=> "success", 
+                            "message"=> "Updated Successfully!!" 
+                        )
+                    );
+                }
+    
+                $update_stmt->close();
+                $db->close();
             }
-
-            $update_stmt->close();
-            $db->close();
+        }
+        else
+        {
+            if ($insert_stmt = $db->prepare("INSERT INTO Raw_Mat (raw_mat_code, name, price, description, variance, high, low, basic_uom, type, created_by, modified_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+                $insert_stmt->bind_param('sssssssssss', $productCode, $productName,  $productPrice, $description, $varianceType, $high, $low, $basicUom, $type, $username, $username);
+    
+                // Execute the prepared query.
+                if (! $insert_stmt->execute()) {
+                    echo json_encode(
+                        array(
+                            "status"=> "failed", 
+                            "message"=> $insert_stmt->error
+                        )
+                    );
+                }
+                else{
+                    $productId = $insert_stmt->insert_id;
+    
+                    # Raw_Mat_UOM
+                    if (isset($_POST['uomNo'])){
+                        $uomNo = $_POST['uomNo'];
+                        $uomId = $_POST['uomId'];
+                        $uom =  $_POST['uom'];
+                        $rate = $_POST['rate'];
+                        $deleteStatus = 1;
+                        if(isset($uomNo) && $uomNo != null && count($uomNo) > 0){
+                            # Delete all existing product uom records tied to the product id then reinsert
+                            if ($delete_stmt = $db->prepare("UPDATE Raw_Mat_UOM SET status=? WHERE raw_mat_id=?")){
+                                $delete_stmt->bind_param('ss', $deleteStatus, $productId);
+        
+                                // Execute the prepared query.
+                                if (! $delete_stmt->execute()) {
+                                    echo json_encode(
+                                        array(
+                                            "status"=> "failed", 
+                                            "message"=> $delete_stmt->error
+                                        )
+                                    );
+                                }
+                                else{
+                                    foreach ($uomNo as $key => $no) {
+                                        if ($product_stmt = $db->prepare("INSERT INTO Raw_Mat_UOM (raw_mat_id, unit_id, rate) VALUES (?, ?, ?)")){
+                                            $product_stmt->bind_param('sss', $productId, $uom[$key], $rate[$key]);
+                                            $product_stmt->execute();
+                                        }
+                                    }
+                                    $product_stmt->close();
+                                }
+                            } 
+                        }
+                    }
+    
+                    echo json_encode(
+                        array(
+                            "status"=> "success", 
+                            "message"=> "Added Successfully!!" 
+                        )
+                    );
+                }
+    
+                $insert_stmt->close();
+                $db->close();
+            }
         }
     }
-    else
-    {
-        if ($insert_stmt = $db->prepare("INSERT INTO Raw_Mat (raw_mat_code, name, price, description, variance, high, low, basic_uom, type, created_by, modified_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('sssssssssss', $productCode, $productName,  $productPrice, $description, $varianceType, $high, $low, $basicUom, $type, $username, $username);
-
-            // Execute the prepared query.
-            if (! $insert_stmt->execute()) {
-                echo json_encode(
-                    array(
-                        "status"=> "failed", 
-                        "message"=> $insert_stmt->error
-                    )
-                );
-            }
-            else{
-                $productId = $insert_stmt->insert_id;
-
-                # Raw_Mat_UOM
-                if (isset($_POST['uomNo'])){
-                    $uomNo = $_POST['uomNo'];
-                    $uomId = $_POST['uomId'];
-                    $uom =  $_POST['uom'];
-                    $rate = $_POST['rate'];
-                    $deleteStatus = 1;
-                    if(isset($uomNo) && $uomNo != null && count($uomNo) > 0){
-                        # Delete all existing product uom records tied to the product id then reinsert
-                        if ($delete_stmt = $db->prepare("UPDATE Raw_Mat_UOM SET status=? WHERE raw_mat_id=?")){
-                            $delete_stmt->bind_param('ss', $deleteStatus, $productId);
-    
-                            // Execute the prepared query.
-                            if (! $delete_stmt->execute()) {
-                                echo json_encode(
-                                    array(
-                                        "status"=> "failed", 
-                                        "message"=> $delete_stmt->error
-                                    )
-                                );
-                            }
-                            else{
-                                foreach ($uomNo as $key => $no) {
-                                    if ($product_stmt = $db->prepare("INSERT INTO Raw_Mat_UOM (raw_mat_id, unit_id, rate) VALUES (?, ?, ?)")){
-                                        $product_stmt->bind_param('sss', $productId, $uom[$key], $rate[$key]);
-                                        $product_stmt->execute();
-                                    }
-                                }
-                                $product_stmt->close();
-                            }
-                        } 
-                    }
-                }
-
-                echo json_encode(
-                    array(
-                        "status"=> "success", 
-                        "message"=> "Added Successfully!!" 
-                    )
-                );
-            }
-
-            $insert_stmt->close();
-            $db->close();
-        }
+    catch (exception $e) {
+        echo json_encode([
+            "status"=> "failed",
+            "message"=> $e->getMessage()
+        ]);
     }
 }
 else

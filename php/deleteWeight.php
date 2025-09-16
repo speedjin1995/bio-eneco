@@ -6,8 +6,8 @@ session_start();
 $username = $_SESSION["username"];
 
 if(isset($_POST['id'], $_POST['cancelReason'])){
-	$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
-	$cancelReason = filter_input(INPUT_POST, 'cancelReason', FILTER_SANITIZE_STRING);
+	$id = $_POST['id'];
+	$cancelReason = $_POST['cancelReason'];
 	//$del = "1";
 	$cancel = "Y";
 	$action = "3";
