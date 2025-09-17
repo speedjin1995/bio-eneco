@@ -505,7 +505,7 @@ else{
                                         Add New Weight</button> -->
 
                                     <!-- /.modal-dialog -->
-                                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-dialog-scrollable custom-xxl">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -1262,7 +1262,7 @@ else{
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
 
-                                    <div class="modal fade" id="bypassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal fade" id="bypassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-dialog-scrollable custom-xxl">
                                             <div class="modal-content">
                                                 <form role="form" id="bypassForm" class="needs-validation" novalidate autocomplete="off">
@@ -1299,7 +1299,7 @@ else{
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-dialog-scrollable custom-xxl">
                                             <div class="modal-content">
                                                 <form role="form" id="approvalForm" class="needs-validation" novalidate autocomplete="off">
@@ -1340,7 +1340,7 @@ else{
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="uploadModal">
+                                    <div class="modal fade" id="uploadModal" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-xl" style="max-width: 90%;">
                                             <div class="modal-content">
                                                 <form role="form" id="uploadForm">
@@ -1362,7 +1362,7 @@ else{
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="prePrintModal">
+                                    <div class="modal fade" id="prePrintModal" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-xl" style="max-width: 90%;">
                                             <div class="modal-content">
                                                 <form role="form" id="prePrintForm">
@@ -1392,7 +1392,7 @@ else{
                                         </div>
                                     </div>
                                     
-                                    <div class="modal fade" id="cancelModal">
+                                    <div class="modal fade" id="cancelModal" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-xl" style="max-width: 90%;">
                                             <div class="modal-content">
                                                 <form role="form" id="cancelForm">
@@ -1448,7 +1448,7 @@ else{
                 <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-            <div class="modal fade" id="setupModal">
+            <div class="modal fade" id="setupModal" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <form role="form" id="setupForm">
@@ -1502,7 +1502,7 @@ else{
                     </form>
                 </div>
             </div>
-            <div class="modal fade" id="prePrintModal">
+            <div class="modal fade" id="prePrintModal" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <form role="form" id="prePrintForm">
