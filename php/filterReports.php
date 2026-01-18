@@ -18,13 +18,13 @@ $searchQuery = "";
 if($_POST['fromDate'] != null && $_POST['fromDate'] != ''){
   $dateTime = DateTime::createFromFormat('d-m-Y', $_POST['fromDate']);
   $fromDateTime = $dateTime->format('Y-m-d 00:00:00');
-  $searchQuery = " and tare_weight1_date >= '".$fromDateTime."'";
+  $searchQuery = " and transaction_date >= '".$fromDateTime."'";
 }
 
 if($_POST['toDate'] != null && $_POST['toDate'] != ''){
   $dateTime = DateTime::createFromFormat('d-m-Y', $_POST['toDate']);
   $toDateTime = $dateTime->format('Y-m-d 23:59:59');
-	$searchQuery .= " and tare_weight1_date <= '".$toDateTime."'";
+	$searchQuery .= " and transaction_date <= '".$toDateTime."'";
 }
 
 if($_POST['status'] != null && $_POST['status'] != '' && $_POST['status'] != '-'){

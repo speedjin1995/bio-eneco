@@ -186,7 +186,11 @@ if($query->num_rows > 0){
                 $type_desc = 'Internal Transfer Receive';
             }
             
-            $lineData = array($row['transaction_id'], $row['transaction_date'], $row['lorry_plate_no1'], $type_code, $type_desc,
+            $transDate = $dateOnly = date("d/m/Y", strtotime($row['transaction_date']));  
+            $timeIn = $dateOnly = date("d/m/Y", strtotime($row['gross_weight1_date'])); 
+            $timeOut = $dateOnly = date("d/m/Y", strtotime($row['tare_weight1_date'])); 
+            
+            $lineData = array($row['transaction_id'], $transDate, $row['lorry_plate_no1'], $type_code, $type_desc,
                 (($type_code=='S' || $type_code=='IT') ? $row['product_code'] : $row['raw_mat_code']), 
                 (($type_code=='S' || $type_code=='IT') ? $row['product_name'] : $row['raw_mat_name']),
                 $row['customer_code'], $row['customer_name'], $row['supplier_code'], $row['supplier_name'],
@@ -201,7 +205,16 @@ if($query->num_rows > 0){
 
         # Added checking to fix duplicated issue
         if (!empty($lineData)) {
-            array_walk($lineData, 'filterData'); 
+            foreach($lineData as $key => $value) {
+                if($key == 1) { // lorry_plate_no1 is at index 3
+                    $lineData[$key] = '="' . $value . '"';
+                } else {
+                    // Apply normal filtering to other columns
+                    filterData($lineData[$key]); 
+                }
+            }
+            
+            //array_walk($lineData, 'filterData'); 
             $excelData .= implode("\t", array_values($lineData)) . "\n"; 
         }
     } 

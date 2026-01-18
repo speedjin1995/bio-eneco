@@ -1,7 +1,8 @@
 <?php
-session_start();
 require_once "db_connect.php";
 require_once "requires/lookup.php";
+
+session_start();
 
 if(isset($_POST['userID'], $_POST['type'])){
 	$id = filter_input(INPUT_POST, 'userID', FILTER_SANITIZE_STRING);

@@ -4,7 +4,7 @@ require_once 'requires/lookup.php';
 
 session_start();
 
-if(!isset($_SESSION['id'])){
+if(!isset($_SESSION['id']) || !isset($_SESSION["username"])){
 	echo '<script type="text/javascript">location.href = "../login.php";</script>'; 
 } else{
 	$username = $_SESSION["username"];
@@ -89,7 +89,7 @@ if (isset($_POST['transactionId'], $_POST['transactionStatus'], $_POST['weightTy
 					$transactionId .= $row2['prefix'];
 				}*/
 
-                $queryPlant = "SELECT do_no as curcount FROM Plant WHERE plant_code='$plantCode'";
+                $queryPlant = "SELECT do_no as curcount FROM Plant WHERE plant_code = '$plantCode' OR name = '$plant'";
 
 				if ($update_stmt = $db->prepare($queryPlant)) {
 					// Execute the prepared query.

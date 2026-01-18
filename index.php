@@ -441,6 +441,7 @@ else{
                                                             <thead>
                                                                 <tr>
                                                                     <th>Transaction Id</th>
+                                                                    <th>Plant</th>
                                                                     <th>Weight Status</th>
                                                                     <th>Customer/ <br> Supplier</th>
                                                                     <th>Vehicle</th>
@@ -505,7 +506,7 @@ else{
                                         Add New Weight</button> -->
 
                                     <!-- /.modal-dialog -->
-                                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-dialog-scrollable custom-xxl">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -1079,8 +1080,8 @@ else{
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row col-4">
-                                                                <div class="col-xxl-12 col-lg-12">
+                                                            <div class="row col-12 col-sm-4">
+                                                                <div class="col-12">
                                                                     <div class="card bg-light">
                                                                         <div class="card-body">
                                                                             <div class="row mb-3" id="noOfDrumDisplay" style="display:none;">
@@ -1106,7 +1107,7 @@ else{
                                                                             <div class="row mb-3">
                                                                                 <label for="grossIncomingDate" class="col-sm-4 col-form-label">Incoming Date</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control input-readonly" id="grossIncomingDate" name="grossIncomingDate" required>
+                                                                                    <input type="text" class="form-control" id="grossIncomingDate" name="grossIncomingDate" required>
                                                                                 </div>
                                                                             </div>
 
@@ -1126,7 +1127,7 @@ else{
                                                                             <div class="row mb-3">
                                                                                 <label for="tareOutgoingDate" class="col-sm-4 col-form-label">Outgoing Date</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control input-readonly" id="tareOutgoingDate" name="tareOutgoingDate">
+                                                                                    <input type="text" class="form-control" id="tareOutgoingDate" name="tareOutgoingDate">
                                                                                 </div>
                                                                             </div>                                                                        
                                                                             <div class="row mb-3">
@@ -1141,7 +1142,7 @@ else{
                                                                         </div>                                                                                                                                  
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-xxl-12 col-lg-12" id="containerCard" style="display:none;">
+                                                                <div class="col-12" id="containerCard" style="display:none;">
                                                                     <div class="card bg-light">
                                                                         <div class="card-body">
                                                                             <div class="row mb-3">
@@ -1179,7 +1180,7 @@ else{
                                                                             <div class="row mb-3">
                                                                                 <label for="grossIncomingDate2" class="col-sm-4 col-form-label">Incoming Date</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control input-readonly" id="grossIncomingDate2" name="grossIncomingDate2">
+                                                                                    <input type="text" class="form-control" id="grossIncomingDate2" name="grossIncomingDate2">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row mb-3">
@@ -1195,7 +1196,7 @@ else{
                                                                             <div class="row mb-3">
                                                                                 <label for="tareOutgoingDate2" class="col-sm-4 col-form-label">Outgoing Date</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control input-readonly" placeholder="" id="tareOutgoingDate2" name="tareOutgoingDate2">
+                                                                                    <input type="text" class="form-control" placeholder="" id="tareOutgoingDate2" name="tareOutgoingDate2">
                                                                                 </div>
                                                                             </div>                                                                        
                                                                             <div class="row mb-3">
@@ -1210,7 +1211,7 @@ else{
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-xxl-412 col-lg-12 mb-3">
+                                                                <div class="col-12">
                                                                     <div class="row">
                                                                         <label for="otherRemarks" class="col-sm-2 col-form-label">Other Remarks</label>
                                                                         <div class="col-sm-10">
@@ -1262,7 +1263,7 @@ else{
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
 
-                                    <div class="modal fade" id="bypassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal fade" id="bypassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-dialog-scrollable custom-xxl">
                                             <div class="modal-content">
                                                 <form role="form" id="bypassForm" class="needs-validation" novalidate autocomplete="off">
@@ -1299,7 +1300,7 @@ else{
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-dialog-scrollable custom-xxl">
                                             <div class="modal-content">
                                                 <form role="form" id="approvalForm" class="needs-validation" novalidate autocomplete="off">
@@ -1340,7 +1341,7 @@ else{
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="uploadModal">
+                                    <div class="modal fade" id="uploadModal" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-xl" style="max-width: 90%;">
                                             <div class="modal-content">
                                                 <form role="form" id="uploadForm">
@@ -1362,7 +1363,7 @@ else{
                                         </div>
                                     </div>
 
-                                    <div class="modal fade" id="prePrintModal">
+                                    <div class="modal fade" id="prePrintModal" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-xl" style="max-width: 90%;">
                                             <div class="modal-content">
                                                 <form role="form" id="prePrintForm">
@@ -1392,7 +1393,7 @@ else{
                                         </div>
                                     </div>
                                     
-                                    <div class="modal fade" id="cancelModal">
+                                    <div class="modal fade" id="cancelModal" data-bs-backdrop="static" data-bs-keyboard="false">
                                         <div class="modal-dialog modal-xl" style="max-width: 90%;">
                                             <div class="modal-content">
                                                 <form role="form" id="cancelForm">
@@ -1448,7 +1449,7 @@ else{
                 <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-            <div class="modal fade" id="setupModal">
+            <div class="modal fade" id="setupModal" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <form role="form" id="setupForm">
@@ -1502,7 +1503,7 @@ else{
                     </form>
                 </div>
             </div>
-            <div class="modal fade" id="prePrintModal">
+            <div class="modal fade" id="prePrintModal" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <form role="form" id="prePrintForm">
@@ -1603,6 +1604,8 @@ else{
             time_24hr: true,
             dateFormat: "d/m/Y H:i:S",
             altInput: true,
+            minuteIncrement: 1,
+            secondIncrement: 1,
             altFormat: "d/m/Y H:i:S K",
             allowInput: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
             clickOpens: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
@@ -1620,6 +1623,8 @@ else{
             time_24hr: true,
             dateFormat: "d/m/Y H:i:S",
             altInput: true,
+            minuteIncrement: 1,
+            secondIncrement: 1,
             altFormat: "d/m/Y H:i:S K",
             allowInput: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
             clickOpens: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
@@ -1637,6 +1642,8 @@ else{
             time_24hr: true,
             dateFormat: "d/m/Y H:i:S",
             altInput: true,
+            minuteIncrement: 1,
+            secondIncrement: 1,
             altFormat: "d/m/Y H:i:S K",
             allowInput: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
             clickOpens: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
@@ -1654,6 +1661,8 @@ else{
             time_24hr: true,
             dateFormat: "d/m/Y H:i:S",
             altInput: true,
+            minuteIncrement: 1,
+            secondIncrement: 1,
             altFormat: "d/m/Y H:i:S K",
             allowInput: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
             clickOpens: <?= ($role == 'SADMIN' || $role == 'ADMIN' || $role == 'MANAGER' || $allowManual == 'Y') ? 'true' : 'false' ?>,
@@ -1722,11 +1731,11 @@ else{
                 if (userRole == 'NORMAL') {
                     var selectedDate = new Date(selectedDates[0]);
                     var todayDate = new Date(today);
-                    
+
                     // Reset time to compare only dates
                     selectedDate.setHours(0, 0, 0, 0);
                     todayDate.setHours(0, 0, 0, 0);
-                    
+
                     if (selectedDate.getTime() !== todayDate.getTime()) {
                         alert('Normal users can only select today\'s date.');
                         instance.setDate(today);
@@ -1742,11 +1751,11 @@ else{
                 if (userRole == 'NORMAL') {
                     var selectedDate = new Date(selectedDates[0]);
                     var todayDate = new Date(today);
-                    
+
                     // Reset time to compare only dates
                     selectedDate.setHours(0, 0, 0, 0);
                     todayDate.setHours(0, 0, 0, 0);
-                    
+
                     if (selectedDate.getTime() !== todayDate.getTime()) {
                         alert('Normal users can only select today\'s date.');
                         instance.setDate(today);
@@ -1838,7 +1847,8 @@ else{
                 { 
                     data: 'transaction_id',
                     class: 'transaction-column'
-                },                
+                },
+                { data: 'plant_name' },
                 { data: 'transaction_status' },
                 { data: 'customer' },
                 { data: 'lorry_plate_no1' },
@@ -1895,12 +1905,12 @@ else{
                         }
 
                         if(userRole == 'SADMIN' || userRole == 'ADMIN' || userRole == 'MANAGER'){
-                            buttons += `
-                            <div class="col-auto">
-                                <button title="Delete" type="button" id="delete${data}" onclick="deactivate(${data})" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </div>`;
+                            //buttons += `
+                            //<div class="col-auto">
+                            //    <button title="Delete" type="button" id="delete${data}" onclick="deactivate(${data})" class="btn btn-danger btn-sm">
+                            //        <i class="fa fa-times"></i>
+                            //    </button>
+                            //</div>`;
                         }
                             
                         buttons += `</div>`;
@@ -2606,6 +2616,7 @@ else{
                         data: 'transaction_id',
                         class: 'transaction-column'
                     },
+                    { data: 'plant_name' },
                     { data: 'transaction_status' },
                     { data: 'customer' },
                     { data: 'lorry_plate_no1' },
@@ -2662,12 +2673,12 @@ else{
                             }
 
                             if(userRole == 'SADMIN' || userRole == 'ADMIN' || userRole == 'MANAGER'){
-                                buttons += `
-                                <div class="col-auto">
-                                    <button title="Delete" type="button" id="delete${data}" onclick="deactivate(${data})" class="btn btn-danger btn-sm">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </div>`;
+                                //buttons += `
+                                //<div class="col-auto">
+                                //    <button title="Delete" type="button" id="delete${data}" onclick="deactivate(${data})" class="btn btn-danger btn-sm">
+                                //        <i class="fa fa-times"></i>
+                                //    </button>
+                                //</div>`;
                             }
                                 
                             buttons += `</div>`;
@@ -3596,6 +3607,8 @@ else{
                 $('#divCustomerName').hide();
                 $('#rawMaterialDisplay').show();
                 $('#productNameDisplay').hide();
+                $('#addModal').find('#customerName').val('').trigger('change');
+                $('#addModal').find('#productName').val('').trigger('change');
                 //$('#addModal').find('#divPoSupplyWeight').show();
                 
                 <?php /*if($_SESSION["roles"] != 'ADMIN' && $_SESSION["roles"] != 'SADMIN' && $_SESSION["roles"] != 'MANAGER'){
@@ -3646,6 +3659,7 @@ else{
                         $('#tinNoDisplay').hide();
                         $('#idNoDisplay').hide();
                         $('#idTypeDisplay').hide();
+                        $('#customerName').val('').trigger('change');
                     }
                 }
             }
@@ -3659,6 +3673,8 @@ else{
                 $('#divCustomerName').show();
                 $('#rawMaterialDisplay').hide();
                 $('#productNameDisplay').show();
+                $('#addModal').find('#supplierName').val('').trigger('change');
+                $('#addModal').find('#rawMaterialName').val('').trigger('change');
                 $('#divPurchaseOrder').find('label[for="purchaseOrder"]').text('Sale Order');
                 // $('#divPurchaseOrder').find('#purchaseOrder').attr('placeholder', 'Sale Order');
                 //$('#addModal').find('#divPoSupplyWeight').hide();
@@ -3693,6 +3709,8 @@ else{
                 $('#divCustomerName').show();
                 $('#rawMaterialDisplay').hide();
                 $('#productNameDisplay').show();
+                $('#addModal').find('#supplierName').val('').trigger('change');
+                $('#addModal').find('#rawMaterialName').val('').trigger('change');
                 $('#divPurchaseOrder').find('label[for="purchaseOrder"]').text('Sale Order');
                 // $('#divPurchaseOrder').find('#purchaseOrder').attr('placeholder', 'Sale Order');
                 //$('#addModal').find('#divPoSupplyWeight').hide();

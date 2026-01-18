@@ -1,0 +1,52 @@
+[13-Sep-2025 16:28:07 Asia/Kuala_Lumpur] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/shelfking/public_html/ws.shelfops.com/php/db_connect.php:5
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/php/db_connect.php(5): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/index.php(5): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/php/db_connect.php on line 5
+[09-Oct-2025 00:30:47 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php:10
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/layouts/config.php(10): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/login.php(12): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php on line 10
+[18-Dec-2025 23:32:07 UTC] PHP Warning:  Undefined array key "username" in /home/shelfking/public_html/ws.shelfops.com/login.php on line 22
+[18-Dec-2025 23:32:07 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/shelfking/public_html/ws.shelfops.com/login.php on line 22
+[18-Dec-2025 23:32:07 UTC] PHP Warning:  Undefined array key "password" in /home/shelfking/public_html/ws.shelfops.com/login.php on line 29
+[18-Dec-2025 23:32:07 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/shelfking/public_html/ws.shelfops.com/login.php on line 29
+[15-Jan-2026 07:34:06 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php:10
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/layouts/config.php(10): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/login.php(12): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php on line 10
+[15-Jan-2026 07:34:12 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php:10
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/layouts/config.php(10): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/login.php(12): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php on line 10
+[15-Jan-2026 07:34:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php:10
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/layouts/config.php(10): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/login.php(12): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php on line 10
+[15-Jan-2026 07:35:40 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php:10
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/layouts/config.php(10): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/login.php(12): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php on line 10
+[15-Jan-2026 07:42:24 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php:10
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/layouts/config.php(10): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/login.php(12): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php on line 10
+[15-Jan-2026 07:42:25 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Connection refused in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php:10
+Stack trace:
+#0 /home/shelfking/public_html/ws.shelfops.com/layouts/config.php(10): mysqli_connect('localhost', 'shelfking_bioen...', Object(SensitiveParameterValue), 'shelfking_bioen...')
+#1 /home/shelfking/public_html/ws.shelfops.com/login.php(12): require_once('/home/shelfking...')
+#2 {main}
+  thrown in /home/shelfking/public_html/ws.shelfops.com/layouts/config.php on line 10
