@@ -1823,7 +1823,12 @@ else{
             "autoWidth": false,
             'processing': true,
             'serverSide': true,
-            'searching': true,
+            'searching': <?php 
+            if($role == 'NORMAL'){
+                echo 'false';
+            } else {
+                echo 'true';
+            }?>,
             'serverMethod': 'post',
             'ajax': {
                 'url':'php/filterWeight.php',
@@ -1952,7 +1957,12 @@ else{
             "autoWidth": false,
             'processing': true,
             'serverSide': true,
-            'searching': true,
+            'searching': <?php 
+            if($role == 'NORMAL'){
+                echo 'false';
+            } else {
+                echo 'true';
+            }?>,
             'serverMethod': 'post',
             'ajax': {
                 'url':'php/loadReceived.php'
@@ -2591,7 +2601,12 @@ else{
                 "autoWidth": false,
                 'processing': true,
                 'serverSide': true,
-                'searching': true,
+                'searching': <?php 
+                if($role == 'NORMAL'){
+                    echo 'false';
+                } else {
+                    echo 'true';
+                }?>,
                 'serverMethod': 'post',
                 'ajax': {
                     'url':'php/filterWeight.php',
