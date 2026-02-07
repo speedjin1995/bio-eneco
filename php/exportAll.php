@@ -30,10 +30,10 @@ if($_GET['fromDate'] != null && $_GET['fromDate'] != ''){
     $formatted_date = $dateTime->format('Y-m-d 00:00:00');
 
     if($_GET["file"] == 'weight'){
-        $searchQuery .= " and Weight.tare_weight1_date >= '".$formatted_date."'";
+        $searchQuery .= " and Weight.transaction_date >= '".$formatted_date."'";
     }
     else{
-        $searchQuery .= " and count.tare_weight1_date >= '".$formatted_date."'";
+        $searchQuery .= " and count.transaction_date >= '".$formatted_date."'";
     }
 }
 
@@ -42,10 +42,10 @@ if($_GET['toDate'] != null && $_GET['toDate'] != ''){
     $formatted_date = $dateTime->format('Y-m-d 23:59:59');
 
     if($_GET["file"] == 'weight'){
-        $searchQuery .= " and Weight.tare_weight1_date <= '".$formatted_date."'";
+        $searchQuery .= " and Weight.transaction_date <= '".$formatted_date."'";
     }
     else{
-        $searchQuery .= " and count.tare_weight1_date <= '".$formatted_date."'";
+        $searchQuery .= " and count.transaction_date <= '".$formatted_date."'";
     }
 }
 
@@ -78,10 +78,10 @@ if(isset($_GET['supplier']) && $_GET['supplier'] != null && $_GET['supplier'] !=
 
 if($_GET['vehicle'] != null && $_GET['vehicle'] != '' && $_GET['vehicle'] != '-'){
     if($_GET["file"] == 'weight'){
-        $searchQuery .= " and Weight.lorry_plate_no1 = '".$_GET['vehicle']."'";
+        $searchQuery .= " and Weight.lorry_plate_no1 like '%".$_GET['vehicle']."%'";
     }
     else{
-        $searchQuery .= " and count.lorry_plate_no1 = '".$_GET['vehicle']."'";
+        $searchQuery .= " and count.lorry_plate_no1 like '%".$_GET['vehicle']."%'";
     }
 }
 

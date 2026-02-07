@@ -256,9 +256,17 @@
                             <li class="nav-item">
                                 <?php
                                     if($_SESSION["roles"] == 'SADMIN'){
-                                        echo '<li class="nav-item">
-                                            <a href="cronjobSetup.php" class="nav-link">'.$lang['t-cronjobSetup'].'</a>
-                                        </li> ';
+                                        echo '
+                                            <li class="nav-item">
+                                                <a href="cronjobSetup.php" class="nav-link">'.$lang['t-cronjobSetup'].'</a>
+                                            </li> 
+                                            <li class="nav-item">
+                                                <a href="backup.php" class="nav-link">'.$lang['t-backup'].'</a>
+                                            </li> 
+                                            <li class="nav-item">
+                                                <a href="restore.php" class="nav-link">'.$lang['t-restore'].'</a>
+                                            </li> 
+                                        ';
                                     }
 
                                     if($_SESSION["roles"] == 'ADMIN' || $_SESSION["roles"] == 'SADMIN'){

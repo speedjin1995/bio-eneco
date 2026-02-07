@@ -336,14 +336,20 @@ else{
                                                                 <h5 class="card-title mb-0">Weighing Records</h5>
                                                             </div>
                                                             <div class="flex-shrink-0">
-                                                                <button type="button" id="exportPdf" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#addModal">
+                                                                <!--button type="button" id="exportPdf" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#addModal">
                                                                     <i class="ri-file-pdf-line align-middle me-1"></i>
                                                                     Export PDF
                                                                 </button>
                                                                 <button type="button" id="exportExcel" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#addModal">
                                                                     <i class="ri-file-excel-line align-middle me-1"></i>
                                                                     Export Excel
-                                                                </button>
+                                                                </button-->
+                                                                <?php if ($_SESSION["roles"] == 'ADMIN' || $_SESSION["roles"] == 'SADMIN') { ?>
+                                                                    <button type="button" id="exportAllData" class="btn btn-info waves-effect waves-light">
+                                                                        <i class="ri-download-line align-middle me-1"></i>
+                                                                        Export All Data
+                                                                    </button>
+                                                                <?php } ?>
                                                             </div> 
                                                         </div> 
                                                     </div>
@@ -524,7 +530,7 @@ else{
             'searching': true,
             'serverMethod': 'post',
             'ajax': {
-                'url':'php/filterReports.php',
+                'url':'php/filterBackup.php',
                 'data': {
                     fromDate: fromDateI,
                     toDate: toDateI,
@@ -594,7 +600,7 @@ else{
                 'searching': true,
                 'serverMethod': 'post',
                 'ajax': {
-                    'url':'php/filterReports.php',
+                    'url':'php/filterBackup.php',
                     'data': {
                         fromDate: fromDateI,
                         toDate: toDateI,
@@ -728,6 +734,25 @@ else{
             var plantI = $('#plantSearch').val() ? $('#plantSearch').val() : '';
             
             window.open("php/export.php?file=weight&fromDate="+fromDateI+"&toDate="+toDateI+
+            "&status="+statusI+"&customer="+customerNoI+"&supplier="+supplierNoI+"&vehicle="+vehicleNoI+
+            "&weighingType=Normal&product="+productI+"&rawMat="+rawMatI+
+            "&destination="+destinationI+"&plant="+plantI);
+        });
+
+        $('#exportAllData').on('click', function(){
+            var fromDateI = $('#fromDateSearch').val();
+            var toDateI = $('#toDateSearch').val();
+            var statusI = $('#statusSearch').val() ? $('#statusSearch').val() : '';
+            var customerNoI = $('#customerNoSearch').val() ? $('#customerNoSearch').val() : '';
+            var supplierNoI = $('#supplierSearch').val() ? $('#supplierSearch').val() : '';
+            var vehicleNoI = $('#vehicleNo').val() ? $('#vehicleNo').val() : '';
+            var customerTypeI = $('#customerTypeSearch').val() ? $('#customerTypeSearch').val() : '';
+            var productI = $('#productSearch').val() ? $('#productSearch').val() : '';
+            var rawMatI = $('#rawMatSearch').val() ? $('#rawMatSearch').val() : '';
+            var destinationI = $('#destinationSearch').val() ? $('#destinationSearch').val() : '';
+            var plantI = $('#plantSearch').val() ? $('#plantSearch').val() : '';
+
+            window.open("php/exportAll.php?file=weight&fromDate="+fromDateI+"&toDate="+toDateI+
             "&status="+statusI+"&customer="+customerNoI+"&supplier="+supplierNoI+"&vehicle="+vehicleNoI+
             "&weighingType=Normal&product="+productI+"&rawMat="+rawMatI+
             "&destination="+destinationI+"&plant="+plantI);
