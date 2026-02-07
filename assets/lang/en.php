@@ -5,6 +5,8 @@
     $lang["t-analytics"]="Analytics";
 
     $lang["t-companyProfile"]="Company Profile";
+    $lang["t-backup"]="Backup Data";
+    $lang["t-restore"]="Restore Data";
     $lang["t-cronjobSetup"]="Cronjob Setup";
     $lang["t-portSetup"]="Port Setup";
     $lang["t-myProfile"]="My Profile";
