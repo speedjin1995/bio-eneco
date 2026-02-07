@@ -155,7 +155,7 @@ if($_GET["file"] == 'weight'){
         $id = $_GET['id']; 
         $sql = "select * from Weight WHERE id IN ($id)";
     }else{
-        $sql = "select * from Weight WHERE Weight.is_cancel = 'N'".$searchQuery;
+        $sql = "select * from Weight WHERE 1=1".$searchQuery;
     }
 
     $query = $db->query($sql);
