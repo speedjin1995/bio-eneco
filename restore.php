@@ -85,6 +85,12 @@
                                                         <input type="file" class="form-control" id="excelFile" name="excelFile" accept=".xls,.xlsx" required>
                                                     </div>
                                                 </div>
+                                                <a href="template/Weight_Backup_Template.xlsx" download>
+                                                    <button type="button" id="downloadTemplate" class="btn btn-success mt-3">
+                                                        <i class="ri-download-2-line me-1"></i>
+                                                        Download Template
+                                                    </button>
+                                                </a>
                                                 <button type="submit" class="btn btn-primary mt-3">
                                                     <i class="ri-upload-line me-1"></i> Upload and Restore
                                                 </button>

@@ -500,7 +500,7 @@ else{
                                         </div><!-- container-fluid -->
                                     </div> <!-- end .h-100-->
                                 </div> <!-- end col -->
-                                <div class="col-xl-3 col-md-6 add-new-weight">
+                                <div class="add-new-weight">
                                     <!-- <button type="button" class="btn btn-lg btn-soft-success" data-bs-toggle="modal" data-bs-target="#addModal"><i
                                             class="ri-add-circle-line align-middle me-1"></i>
                                         Add New Weight</button> -->
