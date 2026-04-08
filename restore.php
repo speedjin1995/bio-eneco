@@ -1,7 +1,22 @@
 <?php include 'layouts/session.php'; ?>
 <?php include 'layouts/head-main.php'; ?>
 
+<?php
+require_once "php/db_connect.php";
 
+$plant = $db->query("SELECT * FROM Plant WHERE status = '0'");
+$plant2 = $db->query("SELECT * FROM Plant WHERE status = '0'");
+$customer = $db->query("SELECT * FROM Customer WHERE status = '0' ORDER BY name ASC");
+$customer2 = $db->query("SELECT * FROM Customer WHERE status = '0' ORDER BY name ASC");
+$supplier = $db->query("SELECT * FROM Supplier WHERE status = '0' ORDER BY name ASC");
+$supplier2 = $db->query("SELECT * FROM Supplier WHERE status = '0' ORDER BY name ASC");
+$product = $db->query("SELECT * FROM Product WHERE status = '0' ORDER BY name ASC");
+$product2 = $db->query("SELECT * FROM Product WHERE status = '0' ORDER BY name ASC");
+$rawMaterial = $db->query("SELECT * FROM Raw_Mat WHERE status = '0' ORDER BY name ASC");
+$rawMaterial2 = $db->query("SELECT * FROM Raw_Mat WHERE status = '0' ORDER BY name ASC");
+$transporter = $db->query("SELECT * FROM Transporter WHERE status = '0' ORDER BY name ASC");
+$transporter2 = $db->query("SELECT * FROM Transporter WHERE status = '0' ORDER BY name ASC");
+?>
 
 <head>
 
@@ -33,6 +48,10 @@
 
         .modal-header {
             padding: var(1rem, 1rem) !important;
+        }
+
+        #previewTable .select2-container {
+            min-width: 250px !important;
         }
     </style>
 </head>
@@ -157,7 +176,162 @@
         <!-- end main content-->
 
     </div>
-    <!-- END layout-wrapper -->                               
+    <!-- END layout-wrapper -->     
+     
+    <script type="text/html" id="dropdownTemplates">
+        <div id="transaction_status">
+            <select class="form-control">
+                <option value="Sales" selected>S - Sales</option>
+                <option value="Purchase">P - Purchase</option>
+                <option value="Local">IT - Internal Transfer</option>
+                <option value="Receive">ITR - Internal Transfer Receive</option>
+            </select>
+        </div>
+        <div id="weight_type">
+            <select class="form-control">
+                <option value="Normal">Normal</option>
+            </select>
+        </div>
+        <div id="customer_type">
+            <select class="form-control">
+                <option value="Cash">Cash</option>
+                <option value="Normal" selected>Normal</option>
+            </select>
+        </div>
+        <div id="plant_code">
+            <select class="form-control select2">
+                <?php while($rowPlant=mysqli_fetch_assoc($plant)){ ?>
+                    <option value="<?=$rowPlant['plant_code'] ?>"><?=$rowPlant['plant_code'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="plant_name">
+            <select class="form-control select2">
+                <?php while($rowPlant2=mysqli_fetch_assoc($plant2)){ ?>
+                    <option value="<?=$rowPlant2['name'] ?>"><?=$rowPlant2['name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="customer_code">
+            <select class="form-control select2">
+                <?php while($rowCustomer=mysqli_fetch_assoc($customer)){ ?>
+                    <option value="<?=$rowCustomer['customer_code'] ?>"><?=$rowCustomer['customer_code'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="customer_name">
+            <select class="form-control select2">
+                <?php while($rowCustomer2=mysqli_fetch_assoc($customer2)){ ?>
+                    <option value="<?=$rowCustomer2['name'] ?>"><?=$rowCustomer2['name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="supplier_code">
+            <select class="form-control select2">
+                <?php while($rowSupplier=mysqli_fetch_assoc($supplier)){ ?>
+                    <option value="<?=$rowSupplier['supplier_code'] ?>"><?=$rowSupplier['supplier_code'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="supplier_name">
+            <select class="form-control select2">
+                <?php while($rowSupplier2=mysqli_fetch_assoc($supplier2)){ ?>
+                    <option value="<?=$rowSupplier2['name'] ?>"><?=$rowSupplier2['name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="product_code">
+            <select class="form-control select2">
+                <?php while($rowProduct=mysqli_fetch_assoc($product)){ ?>
+                    <option value="<?=$rowProduct['product_code'] ?>"><?=$rowProduct['product_code'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="product_name">
+            <select class="form-control select2">
+                <?php while($rowProduct2=mysqli_fetch_assoc($product2)){ ?>
+                    <option value="<?=$rowProduct2['name'] ?>"><?=$rowProduct2['name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="raw_mat_code">
+            <select class="form-control select2">
+                <?php while($rowRawMat=mysqli_fetch_assoc($rawMaterial)){ ?>
+                    <option value="<?=$rowRawMat['raw_mat_code'] ?>"><?=$rowRawMat['raw_mat_code'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="raw_mat_name">
+            <select class="form-control select2">
+                <?php while($rowRawMat2=mysqli_fetch_assoc($rawMaterial2)){ ?>
+                    <option value="<?=$rowRawMat2['name'] ?>"><?=$rowRawMat2['name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="transporter_code">
+            <select class="form-control select2">
+                <?php while($rowTransporter=mysqli_fetch_assoc($transporter)){ ?>
+                    <option value="<?=$rowTransporter['transporter_code'] ?>"><?=$rowTransporter['transporter_code'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="transporter">
+            <select class="form-control select2">
+                <?php while($rowTransporter2=mysqli_fetch_assoc($transporter2)){ ?>
+                    <option value="<?=$rowTransporter2['name'] ?>"><?=$rowTransporter2['name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div id="ex_del">
+            <select class="form-control">
+                <option value="EX" selected>EX</option>
+                <option value="DEL">DEL</option>
+            </select>
+        </div>
+        <div id="is_complete">
+            <select class="form-control">
+                <option value="N" selected>N</option>
+                <option value="Y">Y</option>
+            </select>
+        </div>
+        <div id="is_cancel">
+            <select class="form-control">
+                <option value="N" selected>N</option>
+                <option value="Y">Y</option>
+            </select>
+        </div>
+        <div id="is_approved">
+            <select class="form-control">
+                <option value="N">N</option>
+                <option value="Y" selected>Y</option>
+            </select>
+        </div>
+        <div id="manual_weight">
+            <select class="form-control">
+                <option value="false" selected>false</option>
+                <option value="true">true</option>
+            </select>
+        </div>
+        <div id="status">
+            <select class="form-control">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+            </select>
+        </div>
+        <div id="synced">
+            <select class="form-control">
+                <option value="N" selected>N</option>
+                <option value="Y">Y</option>
+            </select>
+        </div>
+        <div id="received">
+            <select class="form-control">
+                <option value="N">N</option>
+                <option value="Y" selected>Y</option>
+            </select>
+        </div>
+    </script>
+
 
     <?php include 'layouts/customizer.php'; ?>
     <?php include 'layouts/vendor-scripts.php'; ?>
@@ -167,6 +341,8 @@
     <script src="assets/js/pages/notifications.init.js"></script>
 
     <script type="text/javascript">
+    var weightConfig = <?php echo file_get_contents('config/weightConfig.json'); ?>;
+
     $(function () {
         $('#uploadButton').on('click', function () {
             var fileInput = $('#excelFile');
@@ -185,6 +361,24 @@
         });
 
         $('#submitWeights').on('click', function(){
+            $('#uploadForm').validate({
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('td').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+
+            if (!$('#uploadForm').valid()) {
+                return;
+            }
+
             $('#spinnerLoading').show();
 
             var formData = $('#uploadForm').serializeArray();
@@ -287,59 +481,106 @@
     });
 
     function displayPreview(data) {
-        // Parse the Excel data
         var workbook = XLSX.read(data, { type: 'binary' });
-
-        // Get the first sheet
         var sheetName = workbook.SheetNames[0];
         var sheet = workbook.Sheets[sheetName];
-
-        // Convert the sheet to an array of objects
         var jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-        // Get the headers
         var headers = jsonData[0];
 
-        // Ensure we handle cases where there may be less than 76 columns
         while (headers.length < 76) {
-            headers.push(''); // Adding empty headers to reach 76 columns
+            headers.push('');
         }
 
-        // Create HTML table headers
         var htmlTable = '<table style="width:100%;"><thead><tr>';
         headers.forEach(function(header) {
             htmlTable += '<th>' + header + '</th>';
         });
         htmlTable += '</tr></thead><tbody>';
 
-        // Iterate over the data and create table rows
         for (var i = 1; i < jsonData.length; i++) {
             htmlTable += '<tr>';
             var rowData = jsonData[i];
 
-            // Ensure we handle cases where there may be less than 76 cells in a row
             while (rowData.length < 76) {
-                rowData.push(''); // Adding empty cells to reach 76 columns
+                rowData.push('');
             }
 
             for (var j = 0; j < 76; j++) {
                 var cellData = rowData[j];
+                var headerName = headers[j];
+                var config = weightConfig[headerName] || {};
                 var formattedData = cellData;
 
-                // Check if cellData is a valid Excel date serial number and format it to DD/MM/YYYY
-                if (typeof cellData === 'number' && cellData > 0) {
-                    var excelDate = XLSX.SSF.parse_date_code(cellData);
+                if (config.instructions) {
+                    var parts = config.instructions.split(':');
+                    if (parts[0] === 'padStart' && formattedData != null) {
+                        formattedData = String(formattedData).padStart(parseInt(parts[1]), parts[2]);
+                    }
                 }
 
-                htmlTable += '<td><input type="text" id="'+headers[j].replace(/[^a-zA-Z0-9]/g, '')+(i-1)+'" name="'+headers[j].replace(/[^a-zA-Z0-9]/g, '')+'['+(i-1)+']" value="' + (formattedData == null ? '' : formattedData) + '" /></td>';
+                if (config.type === 'datetime' && typeof cellData === 'number' && cellData > 0) {
+                    var excelDate = XLSX.SSF.parse_date_code(cellData);
+                    if (excelDate) {
+                        formattedData = String(excelDate.d).padStart(2, '0') + '/' +
+                            String(excelDate.m).padStart(2, '0') + '/' +
+                            String(excelDate.y) + ' ' +
+                            String(excelDate.H).padStart(2, '0') + ':' +
+                            String(excelDate.M).padStart(2, '0');
+                    }
+                }
+
+                var requiredAttr = (config.required === 'Y') ? ' required' : '';
+                var fieldId = headerName.replace(/[^a-zA-Z0-9]/g, '') + (i-1);
+                var fieldName = headerName.replace(/[^a-zA-Z0-9]/g, '') + '[' + (i-1) + ']';
+
+                if (config.type == 'dropdown') {
+                    var $template = $($('#dropdownTemplates').html());
+                    var $selectSource = $template.filter('#' + headerName).find('select');
+                    if ($selectSource.length) {
+                        var $select = $selectSource.clone();
+                        $select.attr('id', fieldId).attr('name', fieldName).css('min-width', '250px').css('width', '100%');
+                        if (requiredAttr) {
+                            $select.attr('required', 'required');
+                        }
+                        var trimmedData = (formattedData != null) ? String(formattedData).trim() : '';
+                        if (trimmedData !== '') {
+                            $select.find('option').removeAttr('selected');
+                            $select.find('option[value="' + trimmedData + '"]').attr('selected', 'selected');
+                        } else {
+                            $select.find('option').removeAttr('selected');
+                            $select.prepend('<option value="" selected></option>');
+                        }
+                        htmlTable += '<td>' + $select.prop('outerHTML') + '</td>';
+                    } else {
+                        htmlTable += '<td><input type="text" class="form-control" style="min-width:180px"' + requiredAttr + ' id="' + fieldId + '" name="' + fieldName + '" value="' + (formattedData == null ? '' : formattedData) + '" /></td>';
+                    }
+                } else if (config.type == 'datetime') {
+                    htmlTable += '<td><input type="text" class="form-control flatpickr-datetime" style="min-width:180px"' + requiredAttr + ' id="' + fieldId + '" name="' + fieldName + '" value="' + (formattedData == null ? '' : formattedData) + '" /></td>';
+                } else {
+                    htmlTable += '<td><input type="text" class="form-control" style="min-width:180px"' + requiredAttr + ' id="' + fieldId + '" name="' + fieldName + '" value="' + (formattedData == null ? '' : formattedData) + '" /></td>';
+                }
             }
             htmlTable += '</tr>';
         }
 
         htmlTable += '</tbody></table>';
+        $('#previewTable').html(htmlTable);
 
-        var previewTable = document.getElementById('previewTable');
-        previewTable.innerHTML = htmlTable;
+        // Initialize flatpickr for datetime fields
+        $('#previewTable .flatpickr-datetime').flatpickr({
+            enableTime: true,
+            dateFormat: 'd/m/Y H:i',
+            time_24hr: true,
+            allowInput: true
+        });
+
+        // Initialize all Select2 elements in the modal
+        $('#uploadModal .select2').select2({
+            allowClear: true,
+            placeholder: "Please Select",
+            width: '100%',
+            dropdownParent: $('#uploadModal') // Ensures dropdown is not cut off
+        });
     }
     </script>
 </body>
