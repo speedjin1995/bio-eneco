@@ -177,7 +177,7 @@ if($query->num_rows > 0){
         $type_desc = 'Sales';
 
         if($_GET["file"] == 'weight'){
-            $lineData = array($row['id'], $row['transaction_id'], $row['transaction_status'], $row['weight_type'], $row['customer_type'], 
+            $lineData = array($row['id'], '="' . $row['transaction_id'] . '"', $row['transaction_status'], $row['weight_type'], $row['customer_type'], 
                 $row['transaction_date'], $row['lorry_plate_no1'], $row['lorry_plate_no2'], $row['supplier_weight'], $row['po_supply_weight'], 
                 $row['order_weight'], $row['tin_no'], $row['id_no'], $row['id_type'], $row['plant_code'], $row['plant_name'], $row['site_code'], 
                 $row['site_name'], $row['agent_code'], $row['agent_name'], $row['customer_code'], $row['customer_name'], $row['supplier_code'], 

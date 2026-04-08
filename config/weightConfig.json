@@ -1,0 +1,382 @@
+{
+  "id": {
+    "type": "number",
+    "required": "Y",
+    "instructions": ""
+  },
+  "transaction_id": {
+    "type": "text",
+    "required": "Y",
+    "instructions": "padStart:6:0"
+  },
+  "transaction_status": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": ""
+  },
+  "weight_type": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": "default:Normal"
+  },
+  "customer_type": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": "default:Normal"
+  },
+  "transaction_date": {
+    "type": "datetime",
+    "required": "Y",
+    "instructions": ""
+  },
+  "lorry_plate_no1": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "lorry_plate_no2": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "supplier_weight": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "po_supply_weight": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "order_weight": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "tin_no": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "id_no": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "id_type": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "plant_code": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "plant_name": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "site_code": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "site_name": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "agent_code": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "agent_name": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "customer_code": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "customer_name": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "supplier_code": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "supplier_name": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "product_code": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "product_name": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "product_description": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "ex_del": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": "default:EX"
+  },
+  "raw_mat_code": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "raw_mat_name": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "container_no": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "invoice_no": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "purchase_order": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "delivery_no": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "transporter_code": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "transporter": {
+    "type": "dropdown",
+    "required": "N",
+    "instructions": ""
+  },
+  "destination_code": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "destination": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "remarks": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "gross_weight1": {
+    "type": "text",
+    "required": "Y",
+    "instructions": ""
+  },
+  "gross_weight1_date": {
+    "type": "datetime",
+    "required": "Y",
+    "instructions": ""
+  },
+  "tare_weight1": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "tare_weight1_date": {
+    "type": "datetime",
+    "required": "N",
+    "instructions": ""
+  },
+  "nett_weight1": {
+    "type": "text",
+    "required": "Y",
+    "instructions": ""
+  },
+  "gross_weight2": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "gross_weight2_date": {
+    "type": "datetime",
+    "required": "N",
+    "instructions": ""
+  },
+  "tare_weight2": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "tare_weight2_date": {
+    "type": "datetime",
+    "required": "N",
+    "instructions": ""
+  },
+  "nett_weight2": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "reduce_weight": {
+    "type": "text",
+    "required": "Y",
+    "instructions": "default:0"
+  },
+  "final_weight": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "weight_different": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "is_complete": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": "default:N"
+  },
+  "is_cancel": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": "default:N"
+  },
+  "is_approved": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": "default:Y"
+  },
+  "manual_weight": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": ""
+  },
+  "indicator_id": {
+    "type": "text",
+    "required": "Y",
+    "instructions": "default:X722"
+  },
+  "weighbridge_id": {
+    "type": "text",
+    "required": "Y",
+    "instructions": "default:1"
+  },
+  "created_date": {
+    "type": "datetime",
+    "required": "Y",
+    "instructions": ""
+  },
+  "created_by": {
+    "type": "text",
+    "required": "Y",
+    "instructions": ""
+  },
+  "modified_date": {
+    "type": "datetime",
+    "required": "Y",
+    "instructions": ""
+  },
+  "modified_by": {
+    "type": "text",
+    "required": "Y",
+    "instructions": ""
+  },
+  "indicator_id_2": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "unit_price": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "sub_total": {
+    "type": "text",
+    "required": "Y",
+    "instructions": "default:0.00"
+  },
+  "sst": {
+    "type": "text",
+    "required": "Y",
+    "instructions": "default:0.00"
+  },
+  "total_price": {
+    "type": "text",
+    "required": "Y",
+    "instructions": "default:0.00"
+  },
+  "load_drum": {
+    "type": "text",
+    "required": "N",
+    "instructions": "default:LOAD"
+  },
+  "no_of_drum": {
+    "type": "number",
+    "required": "N",
+    "instructions": ""
+  },
+  "batch_drum": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "status": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": "default:0"
+  },
+  "approved_by": {
+    "type": "number",
+    "required": "N",
+    "instructions": ""
+  },
+  "approved_reason": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  },
+  "synced": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": "default:N"
+  },
+  "received": {
+    "type": "dropdown",
+    "required": "Y",
+    "instructions": "default:Y"
+  },
+  "cancelled_reason": {
+    "type": "text",
+    "required": "N",
+    "instructions": ""
+  }
+}
