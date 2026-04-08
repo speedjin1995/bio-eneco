@@ -22,9 +22,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 if (!empty($data)) {
     $errorArray = [];
-    $rowNum = 1; // To keep track of the row number for error reporting
+    $rowNum = 0; // To keep track of the row number for error reporting
 
     foreach ($data as $row) {
+        $rowNum++;
         $id = !empty($row['id']) ? trim($row['id']) : null;
         $transactionid = !empty($row['transactionid']) ? trim($row['transactionid']) : null;
         $transactionstatus = !empty($row['transactionstatus']) ? trim($row['transactionstatus']) : null;
