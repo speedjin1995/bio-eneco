@@ -3,6 +3,7 @@ require_once 'db_connect.php';
 require_once '../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 session_start();
 
@@ -15,6 +16,31 @@ $logFile = $logDir . '/restore_' . date('Y-m-d') . '.txt';
 function writeLog($logFile, $message){
     $timestamp = date('Y-m-d H:i:s');
     @file_put_contents($logFile, "[$timestamp] $message" . PHP_EOL, FILE_APPEND);
+}
+
+function buildInsertQuery($table, $data) {
+    $columns = [];
+    $placeholders = [];
+    $values = [];
+    $types = '';
+
+    foreach ($data as $column => $value) {
+        $columns[] = $column;
+
+        if ($value === null || $value === '') {
+            // 🔥 Use MySQL DEFAULT
+            $placeholders[] = "DEFAULT";
+        } else {
+            $placeholders[] = "?";
+            $values[] = $value;
+            $types .= "s"; // adjust if needed
+        }
+    }
+
+    $sql = "INSERT INTO $table (" . implode(',', $columns) . ")
+            VALUES (" . implode(',', $placeholders) . ")";
+
+    return [$sql, $types, $values];
 }
 
 if(!isset($_FILES['excelFile'])){
@@ -36,7 +62,51 @@ try {
     writeLog($logFile, "START: Processing file - " . $_FILES['excelFile']['name']);
     $spreadsheet = IOFactory::load($file);
     $worksheet = $spreadsheet->getActiveSheet();
-    $rows = $worksheet->toArray();
+    $dateColumns = [5, 40, 42, 45, 47, 58, 60];
+
+    $rows = [];
+    foreach ($worksheet->getRowIterator() as $rowIndex => $row) {
+        $cellIterator = $row->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(false);
+    
+        $rowData = [];
+    
+        foreach ($cellIterator as $cell) {
+            $value = $cell->getValue();
+
+            // get column index (0-based)
+            $colIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($cell->getColumn()) - 1;
+            
+            if (in_array($colIndex, $dateColumns)) {
+            
+                // Case 1: Excel real datetime
+                if (Date::isDateTime($cell) && is_numeric($value)) {
+                    $value = Date::excelToDateTimeObject($value)->format('Y-m-d H:i:s');
+                }
+            
+                // Case 2: string datetime (your AM issue)
+                else if (!empty($value)) {
+            
+                    $time = strtotime($value);
+            
+                    if ($time === false) {
+                        $dt = DateTime::createFromFormat('d/m/Y H:i', $value);
+                        if ($dt) {
+                            $value = $dt->format('Y-m-d H:i:s');
+                        } else {
+                            $value = null;
+                        }
+                    } else {
+                        $value = date('Y-m-d H:i:s', $time);
+                    }
+                }
+            }
+    
+            $rowData[] = $value;
+        }
+    
+        $rows[] = $rowData;
+    }
     
     $header = array_shift($rows);
     $inserted = 0;
@@ -63,40 +133,112 @@ try {
             }
         }
         
-        $stmt = $db->prepare("INSERT INTO Weight (transaction_id, transaction_status, weight_type, customer_type, transaction_date, 
-            lorry_plate_no1, lorry_plate_no2, supplier_weight, po_supply_weight, order_weight, tin_no, id_no, id_type, 
-            plant_code, plant_name, site_code, site_name, agent_code, agent_name, customer_code, customer_name, 
-            supplier_code, supplier_name, product_code, product_name, product_description, ex_del, raw_mat_code, 
-            raw_mat_name, container_no, invoice_no, purchase_order, delivery_no, transporter_code, transporter, 
-            destination_code, destination, remarks, gross_weight1, gross_weight1_date, tare_weight1, tare_weight1_date, 
-            nett_weight1, gross_weight2, gross_weight2_date, tare_weight2, tare_weight2_date, nett_weight2, 
-            reduce_weight, final_weight, weight_different, is_complete, is_cancel, is_approved, manual_weight, 
-            indicator_id, weighbridge_id, created_date, created_by, modified_date, modified_by, indicator_id_2, 
-            unit_price, sub_total, sst, total_price, load_drum, no_of_drum, batch_drum, status, approved_by, 
-            approved_reason, synced, received, cancelled_reason) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $data = [
+            "transaction_id" => $row[1],
+            "transaction_status" => $row[2],
+            "weight_type" => $row[3],
+            "customer_type" => $row[4],
+            "transaction_date" => $row[5],
+            "lorry_plate_no1" => $row[6],
+            "lorry_plate_no2" => $row[7],
+            "supplier_weight" => $row[8],
+            "po_supply_weight" => $row[9],
+            "order_weight" => $row[10],
+            "tin_no" => $row[11],
+            "id_no" => $row[12],
+            "id_type" => $row[13],
+            "plant_code" => $row[14],
+            "plant_name" => $row[15],
+            "site_code" => $row[16],
+            "site_name" => $row[17],
+            "agent_code" => $row[18],
+            "agent_name" => $row[19],
+            "customer_code" => $row[20],
+            "customer_name" => $row[21],
+            "supplier_code" => $row[22],
+            "supplier_name" => $row[23],
+            "product_code" => $row[24],
+            "product_name" => $row[25],
+            "product_description" => $row[26],
+            "ex_del" => $row[27],
+            "raw_mat_code" => $row[28],
+            "raw_mat_name" => $row[29],
+            "container_no" => $row[30],
+            "invoice_no" => $row[31],
+            "purchase_order" => $row[32],
+            "delivery_no" => $row[33],
+            "transporter_code" => $row[34],
+            "transporter" => $row[35],
+            "destination_code" => $row[36],
+            "destination" => $row[37],
+            "remarks" => $row[38],
+            "gross_weight1" => $row[39],
+            "gross_weight1_date" => $row[40],
+            "tare_weight1" => $row[41],
+            "tare_weight1_date" => $row[42],
+            "nett_weight1" => $row[43],
+            "gross_weight2" => $row[44],
+            "gross_weight2_date" => $row[45],
+            "tare_weight2" => $row[46],
+            "tare_weight2_date" => $row[47],
+            "nett_weight2" => $row[48],
+            "reduce_weight" => $row[49],
+            "final_weight" => $row[50],
+            "weight_different" => $row[51],
+            "is_complete" => $row[52],
+            "is_cancel" => $row[53],
+            "is_approved" => $row[54],
+            "manual_weight" => $row[55],
+            "indicator_id" => $row[56],
+            "weighbridge_id" => $row[57],
+            "created_date" => $row[58],
+            "created_by" => $row[59],
+            "modified_date" => $row[60],
+            "modified_by" => $row[61],
+            "indicator_id_2" => $row[62],
+            "unit_price" => $row[63],
+            "sub_total" => $row[64],
+            "sst" => $row[65],
+            "total_price" => $row[66],
+            "load_drum" => $row[67],
+            "no_of_drum" => $row[68],
+            "batch_drum" => $row[69],
+            "status" => $row[70],
+            "approved_by" => $row[71],
+            "approved_reason" => $row[72],
+            "synced" => $row[73],
+            "received" => $row[74],
+            "cancelled_reason" => $row[75]
+        ];
         
-        $stmt->bind_param("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
-            $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8], $row[9], $row[10],
-            $row[11], $row[12], $row[13], $row[14], $row[15], $row[16], $row[17], $row[18], $row[19], $row[20],
-            $row[21], $row[22], $row[23], $row[24], $row[25], $row[26], $row[27], $row[28], $row[29], $row[30],
-            $row[31], $row[32], $row[33], $row[34], $row[35], $row[36], $row[37], $row[38], $row[39], $row[40],
-            $row[41], $row[42], $row[43], $row[44], $row[45], $row[46], $row[47], $row[48], $row[49], $row[50],
-            $row[51], $row[52], $row[53], $row[54], $row[55], $row[56], $row[57], $row[58], $row[59], $row[60],
-            $row[61], $row[62], $row[63], $row[64], $row[65], $row[66], $row[67], $row[68], $row[69], $row[70],
-            $row[71], $row[72], $row[73], $row[74], $row[75]
-        );
+        list($sql, $types, $values) = buildInsertQuery("Weight", $data);
+
+        $stmt = $db->prepare($sql);
         
+        if (!$stmt) {
+            $errors++;
+            $errorDetails[] = [
+                "row" => $index + 2,
+                "error" => $db->error
+            ];
+            continue;
+        }
+    
+        if (!empty($values)) {
+            $stmt->bind_param($types, ...$values);
+        }
+    
         if($stmt->execute()){
             $inserted++;
         } else {
             $errors++;
-            $errorDetails[] = array(
+            $errorDetails[] = [
                 "row" => $index + 2,
                 "error" => $stmt->error
-            );
+            ];
         }
+    
+        $stmt->close();
     }
     
     writeLog($logFile, "SUCCESS: Inserted: $inserted, Errors: $errors");
