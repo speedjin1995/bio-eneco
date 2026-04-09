@@ -127,7 +127,7 @@ if (!empty($data)) {
         }
 
         // Check transaction status if Sales or Local then only keep customer/product else supplier/raw material
-        if ($transactionStatus == "Sales" || $transactionStatus == "Local") {
+        if ($transactionstatus == "Sales" || $transactionstatus == "Local") {
             $suppliercode = null;
             $suppliername = null;
             $rawmatcode = null;

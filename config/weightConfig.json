@@ -1,7 +1,7 @@
 {
   "id": {
     "type": "number",
-    "required": "Y",
+    "required": "N",
     "instructions": ""
   },
   "transaction_id": {

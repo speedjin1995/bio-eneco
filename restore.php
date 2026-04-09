@@ -574,12 +574,14 @@ $transporter2 = $db->query("SELECT * FROM Transporter WHERE status = '0' ORDER B
             allowInput: true
         });
 
-        // Initialize all Select2 elements in the modal
-        $('#uploadModal .select2').select2({
-            allowClear: true,
-            placeholder: "Please Select",
-            width: '100%',
-            dropdownParent: $('#uploadModal') // Ensures dropdown is not cut off
+        // Initialize Select2 for each select element
+        $('#previewTable .select2').each(function() {
+            $(this).select2({
+                allowClear: true,
+                placeholder: "Please Select",
+                width: '100%',
+                dropdownParent: $(this).parent()
+            });
         });
     }
     </script>
