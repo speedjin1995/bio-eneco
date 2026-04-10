@@ -111,19 +111,23 @@ if (!empty($data)) {
         }
 
         // Check if transaction_id already exists
-        if (!empty($transactionid)) {
-            $checkStmt = $db->prepare("SELECT COUNT(*) FROM Weight WHERE transaction_id = ?");
-            $checkStmt->bind_param("s", $transactionid);
+        if (!empty($transactionid) && !empty($plantcode)) {
+            $checkStmt = $db->prepare("SELECT COUNT(*) FROM Weight WHERE transaction_id = ? AND plant_code = ?");
+            $checkStmt->bind_param("ss", $transactionid, $plantcode);
             $checkStmt->execute();
             $checkStmt->bind_result($count);
             $checkStmt->fetch();
             $checkStmt->close();
             
             if($count > 0){
-                $errMsg = "Row Num: ".$rowNum." with Transaction ID: ".$transactionid." already exists.";
+                $errMsg = "Row Num: ".$rowNum." with Transaction ID: ".$transactionid." and Plant Code: ".$plantcode." already exists.";
                 $errorArray[] = $errMsg;
                 continue;
             }
+        }else{
+            $errMsg = "Row Num: ".$rowNum." must include both Transaction ID and Plant Code.";
+            $errorArray[] = $errMsg;
+            continue;
         }
 
         // Check transaction status if Sales or Local then only keep customer/product else supplier/raw material
