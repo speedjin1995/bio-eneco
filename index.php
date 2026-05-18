@@ -2568,6 +2568,16 @@ else{
                             $('#checkingConnection').removeClass('bg-danger'); 
                         }
                     }
+                    else if(ind == 'D2008'){
+                        if(data.includes("GS")){
+                            var text = data.split(",");
+                            var text2 = text[text.length - 1];
+                            text2 = text2.replace("kg", "").replace("KG", "").replace("Kg", "");
+                            $('#indicatorWeight').html(parseInt(text2).toString());
+                            $('#indicatorConnected').addClass('bg-primary');
+                            $('#checkingConnection').removeClass('bg-danger');
+                        }
+                    }
                 }
                 else{
                     $('#indicatorWeight').html('0');
