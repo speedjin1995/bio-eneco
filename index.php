@@ -2568,6 +2568,42 @@ else{
                             $('#checkingConnection').removeClass('bg-danger'); 
                         }
                     }
+                    else if (ind == 'N420') {
+                        let newText = 0;
+                        data = data.trim();
+
+                        if (data.includes('\x02')) {
+
+                            // Remove STX and ETX
+                            let frame = data.replace(/[\x02\x03]/g, '').trim();
+
+                            console.log("Frame:", frame);
+
+                            // Example:
+                            // +005240018
+                            // +000080013
+
+                            if (frame.length >= 9) {
+
+                                // Skip '+' and take the next 6 digits as weight
+                                let weightStr = frame.substr(1, 6);
+
+                                newText = parseInt(weightStr, 10);
+
+                                if (isNaN(newText))
+                                    newText = 0;
+                            }
+                        }
+                        else if (data.endsWith('B')) {
+
+                            // Zero frame
+                            newText = 0;
+                        }
+
+                        $('#indicatorWeight').html(newText);
+                        $('#indicatorConnected').addClass('bg-primary');
+                        $('#checkingConnection').removeClass('bg-danger');
+                    }
                     else if(ind == 'D2008'){
                         if(data.includes("GS")){
                             var text = data.split(",");
