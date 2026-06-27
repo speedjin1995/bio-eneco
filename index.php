@@ -2591,7 +2591,7 @@ else{
                         }
 
                         //if(newtext != null && newtext != ''){
-                        $('#indicatorWeight').html(newtext.replaceAll(",", "").trim());
+                        $('#indicatorWeight').html(newtext.toString().trim());
                         $('#indicatorConnected').addClass('bg-primary');
                         $('#checkingConnection').removeClass('bg-danger'); 
                         //}
