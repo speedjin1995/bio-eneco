@@ -2568,6 +2568,34 @@ else{
                             $('#checkingConnection').removeClass('bg-danger'); 
                         }
                     }
+                    else if(ind == 'N420'){
+                        let newtext = 0;
+
+                        // Format 1: STX +000080013 ETX
+                        if (data.includes('\x02')) {
+                            let frame = data.replace(/[\x02\x03]/g, '');
+
+                            // Remove the trailing status digit
+                            frame = frame.slice(0, -1);
+                            newtext = parseInt(frame, 10);
+
+                        }
+                        // Format 2: +00000001B
+                        else if (data.endsWith('B')) {
+                            let frame = data.replace('B', '');
+                            newtext = parseInt(frame, 10);
+
+                            // Indicator sends +00000001B when zero
+                            if (newtext === 1)
+                                newtext = 0;
+                        }
+
+                        //if(newtext != null && newtext != ''){
+                        $('#indicatorWeight').html(newtext.replaceAll(",", "").trim());
+                        $('#indicatorConnected').addClass('bg-primary');
+                        $('#checkingConnection').removeClass('bg-danger'); 
+                        //}
+                    }
                     else if(ind == 'D2008'){
                         if(data.includes("GS")){
                             var text = data.split(",");
