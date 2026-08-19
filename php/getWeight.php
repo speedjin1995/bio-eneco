@@ -118,7 +118,7 @@ if(isset($_POST['userID'])){
                         }else if ($row['transaction_status'] == 'Purchase'){
                             $transactionStatus = 'P - Purchase';
                         }else if ($row['transaction_status'] == 'Receive'){
-                            $transactionStatus = 'ITR - Internal Transfer Receive	';
+                            $transactionStatus = 'ITR - Internal Transfer Receive';
                         }else {
                             $transactionStatus = 'IT - Internal Transfer';
                         }
