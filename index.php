@@ -2947,7 +2947,7 @@ else{
 
         $('#customerType').on('change', function(){
             var transactionStatus = $('#addModal').find('#transactionStatus').val();
-            if (transactionStatus == 'Purchase'){
+            if (transactionStatus == 'Purchase' || transactionStatus == 'Receive'){
                 $('#unitPriceDisplay').hide();
                 $('#subTotalPriceDisplay').hide();
                 $('#sstDisplay').hide();
@@ -4993,7 +4993,7 @@ else{
                 $('#addModal').find('#customerType').val(obj.message.customer_type).trigger('change');
                 $('#addModal').find('#transactionDate').val(formatDate2(new Date(obj.message.transaction_date)));
 
-                if(obj.message.transaction_status == "Purchase"){
+                if(obj.message.transaction_status == "Purchase" || obj.message.transaction_status == "Receive"){
                     //$('#divWeightDifference').show();
                     //$('#divSupplierWeight').show();
                     $('#divSupplierName').show();

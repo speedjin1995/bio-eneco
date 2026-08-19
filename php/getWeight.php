@@ -74,7 +74,7 @@ if(isset($_POST['userID'])){
                     if ($format == 'EXPANDABLE'){
                         $message['id'] = $row['id'];
 
-                        if ($row['transaction_status'] == 'Purchase'){
+                        if ($row['transaction_status'] == 'Purchase' || $row['transaction_status'] == 'Receive'){
                             if ($customer_stmt = $db->prepare("SELECT * FROM Supplier WHERE supplier_code=? AND status = '0'")) {
                                 $customer_stmt->bind_param('s', $row['supplier_code']);
                                 $customer_stmt->execute();
@@ -117,7 +117,9 @@ if(isset($_POST['userID'])){
                             $transactionStatus = 'S - Sales';
                         }else if ($row['transaction_status'] == 'Purchase'){
                             $transactionStatus = 'P - Purchase';
-                        }else{
+                        }else if ($row['transaction_status'] == 'Receive'){
+                            $transactionStatus = 'ITR - Internal Transfer Receive	';
+                        }else {
                             $transactionStatus = 'IT - Internal Transfer';
                         }
 
